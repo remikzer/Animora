@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animora</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+  </head>
+  <body class="page-search">
+    <header class="navbar">
+      <div class="logo">
+        <svg
+          width="240"
+          height="60"
+          viewBox="0 0 240 60"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Stylized A -->
+          <path
+            d="M20 50 L30 10 L40 50 Z M26 35 L34 35 L30 20 Z"
+            fill="white"
+          />
+
+          <!-- Text -->
+          <text
+            x="50"
+            y="42"
+            font-family="Poppins, sans-serif"
+            font-size="30"
+            font-weight="700"
+            fill="white"
+            letter-spacing="2"
+          >
+            Animora
+          </text>
+        </svg>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Accueil</a>
+        <a href="profil.html">Profil</a>
+        <a href="search.html" class="search-icon" aria-label="Recherche">
+          <i class="fas fa-search"></i>
+        </a>
+      </nav>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+    <main>
+      <section class="search-section">
+        <h2>Recherche Avancée</h2>
+
+        <form id="advancedSearchForm" class="search-form">
+          <!-- Recherche par titre -->
+          <div class="form-group">
+            <div class="form-group-title">Titre</div>
+            <input
+              type="text"
+              id="searchTitle"
+              name="title"
+              placeholder="Entrez le titre d'un anime"
+            />
+          </div>
+
+          <!-- Filtres supplémentaires -->
+          <div class="form-group">
+            <div class="form-group-title">Filtres avancés</div>
+            <div class="form-row">
+              <!-- Année -->
+              <div class="form-group">
+                <label for="searchYear">Année</label>
+                <input
+                  type="number"
+                  id="searchYear"
+                  name="year"
+                  placeholder="Ex: 2023"
+                  min="1960"
+                  max="2099"
+                />
+              </div>
+
+              <!-- Score -->
+              <div class="form-group">
+                <label for="searchScore">Score minimum</label>
+                <input
+                  type="number"
+                  id="searchScore"
+                  name="score"
+                  placeholder="Ex: 7.5"
+                  step="0.1"
+                  min="0"
+                  max="10"
+                />
+              </div>
+
+              <!-- Statut -->
+              <div class="form-group">
+                <label for="searchStatus">Statut</label>
+                <select id="searchStatus" name="status">
+                  <option value="">Tous</option>
+                  <option value="airing">En cours</option>
+                  <option value="complete">Terminé</option>
+                  <option value="upcoming">À venir</option>
+                </select>
+              </div>
+
+              <!-- Type -->
+              <div class="form-group">
+                <label for="searchType">Type</label>
+                <select id="searchType" name="type">
+                  <option value="">Tous</option>
+                  <option value="tv">TV</option>
+                  <option value="movie">Film</option>
+                  <option value="ova">OVA</option>
+                  <option value="special">Spécial</option>
+                  <option value="ona">ONA</option>
+                  <option value="music">Musique</option>
+                </select>
+              </div>
+
+              <!-- Tri -->
+              <div class="form-group">
+                <label for="searchSort">Trier par</label>
+                <select id="searchSort" name="sort">
+                  <option value="">Pertinence</option>
+                  <option value="score_desc">Score décroissant</option>
+                  <option value="score_asc">Score croissant</option>
+                  <option value="year_desc">Année décroissante</option>
+                  <option value="year_asc">Année croissante</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Genres & Thèmes -->
+          <div class="form-group">
+            <div class="form-group-title">Genres & Thèmes</div>
+            <div class="toggle-tags" id="genreFilters">
+              <!-- Action / Adventure -->
+              <button type="button" class="tag-toggle" data-value="Action">
+                Action
+              </button>
+              <button type="button" class="tag-toggle" data-value="Adventure">
+                Aventure
+              </button>
+
+              <!-- Comedy / Drama -->
+              <button type="button" class="tag-toggle" data-value="Comedy">
+                Comédie
+              </button>
+              <button type="button" class="tag-toggle" data-value="Drama">
+                Drame
+              </button>
+
+              <!-- Fantasy / Sci-Fi -->
+              <button type="button" class="tag-toggle" data-value="Fantasy">
+                Fantasy
+              </button>
+              <button type="button" class="tag-toggle" data-value="Sci-Fi">
+                Science-Fiction
+              </button>
+
+              <!-- Romance / Horror -->
+              <button type="button" class="tag-toggle" data-value="Romance">
+                Romance
+              </button>
+              <button type="button" class="tag-toggle" data-value="Horror">
+                Horreur
+              </button>
+
+              <!-- Mystery / Thriller -->
+              <button type="button" class="tag-toggle" data-value="Mystery">
+                Mystère
+              </button>
+              <button type="button" class="tag-toggle" data-value="Thriller">
+                Thriller
+              </button>
+
+              <!-- Sports / Supernatural -->
+              <button type="button" class="tag-toggle" data-value="Sports">
+                Sport
+              </button>
+              <button
+                type="button"
+                class="tag-toggle"
+                data-value="Supernatural"
+              >
+                Surnaturel
+              </button>
+
+              <!-- Slice of Life / Psychological -->
+              <button
+                type="button"
+                class="tag-toggle"
+                data-value="Slice of Life"
+              >
+                Tranche de vie
+              </button>
+              <button
+                type="button"
+                class="tag-toggle"
+                data-value="Psychological"
+              >
+                Psychologique
+              </button>
+
+              <!-- Ecchi / Harem -->
+              <button type="button" class="tag-toggle" data-value="Ecchi">
+                Ecchi
+              </button>
+              <button type="button" class="tag-toggle" data-value="Harem">
+                Harem
+              </button>
+
+              <!-- Mecha / Demons -->
+              <button type="button" class="tag-toggle" data-value="Mecha">
+                Mecha
+              </button>
+              <button type="button" class="tag-toggle" data-value="Demons">
+                Démons
+              </button>
+
+              <!-- Historical / Military -->
+              <button type="button" class="tag-toggle" data-value="Historical">
+                Historique
+              </button>
+              <button type="button" class="tag-toggle" data-value="Military">
+                Militaire
+              </button>
+
+              <!-- Kids / School / Vampire -->
+              <button type="button" class="tag-toggle" data-value="Kids">
+                Enfants
+              </button>
+              <button type="button" class="tag-toggle" data-value="School">
+                École
+              </button>
+              <button type="button" class="tag-toggle" data-value="Vampire">
+                Vampire
+              </button>
+            </div>
+          </div>
+
+          <!-- Bouton de recherche -->
+          <div class="form-group">
+            <button type="submit" class="search-button">Rechercher</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="recommendations-section">
+        <h2>Résultats de la recherche</h2>
+        <div class="recommendations-container" id="animeContainer"></div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-logo">Animora</div>
+        <div class="footer-links">
+          <a href="#">À propos</a>
+          <a href="#">Contact</a>
+          <a href="#">Conditions</a>
+          <a href="#">Politique de confidentialité</a>
+        </div>
+        <p class="footer-credit">© 2025 Animora. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="./js/main.js"></script>
+  </body>
+</html>

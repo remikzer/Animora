@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #starRating {
+        display: flex;
+        gap: 8px;
+        font-size: 2rem;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      #starRating span {
+        color: #ccc;
+        transition: color 0.2s, transform 0.2s;
+      }
+
+      #starRating span.selected {
+        color: #ffc107;
+      }
+
+      #starRating.locked span {
+        pointer-events: none;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="starRating">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const starRating = document.getElementById("starRating");
+        const stars = starRating.querySelectorAll("span");
+        let locked = false;
+
+        stars.forEach((star) => {
+          star.addEventListener("mouseenter", () => {
+            if (locked) return;
+            const val = parseInt(star.dataset.value);
+            stars.forEach((s) => {
+              s.classList.toggle("selected", parseInt(s.dataset.value) <= val);
+            });
+          });
+
+          star.addEventListener("click", () => {
+            if (locked) return;
+            const val = parseInt(star.dataset.value);
+            alert(`Note enregistrée : ${val}★`);
+            stars.forEach((s) => {
+              s.classList.toggle("selected", parseInt(s.dataset.value) <= val);
+            });
+            locked = true;
+            starRating.classList.add("locked");
+          });
+        });
+
+        starRating.addEventListener("mouseleave", () => {
+          if (locked) return;
+          stars.forEach((s) => s.classList.remove("selected"));
+        });
+      });
+    </script>
+  </body>
+</html>
