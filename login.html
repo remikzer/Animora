@@ -4,60 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animora</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
     />
-    <!-- Firebase v9+ compatible navigateur (non-modules)
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
-    <script src="./js/firebase-config.js"></script> -->
   </head>
   <body class="page-accueil">
     <header class="navbar">
-      <div class="logo">
-        <svg
-          width="240"
-          height="60"
-          viewBox="0 0 240 60"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <!-- Stylized A -->
-          <path
-            d="M20 50 L30 10 L40 50 Z M26 35 L34 35 L30 20 Z"
-            fill="white"
-          />
-
-          <!-- Text -->
-          <text
-            x="50"
-            y="42"
-            font-family="Poppins, sans-serif"
-            font-size="30"
-            font-weight="700"
-            fill="white"
-            letter-spacing="2"
-          >
-            Animora
-          </text>
-        </svg>
-      </div>
+      <a href="index.html" class="logo"></a>
       <nav class="nav-links">
-        <a href="index.html">Accueil</a>
-        <a href="profil.html">Profil</a>
+        <a href="profil.html"> <i class="fas fa-user"></i></a>
         <a href="search.html" class="search-icon" aria-label="Recherche">
           <i class="fas fa-search"></i>
         </a>
       </nav>
-
-      <div class="menu-toggle" id="menuToggle">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </header>
     <main>
       <!-- Formulaire Auth -->
@@ -85,29 +46,4 @@
 
     <script type="module" src="./js/main.js"></script>
   </body>
-  <!-- <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-    import {
-      getAuth,
-      createUserWithEmailAndPassword,
-      signInWithEmailAndPassword,
-    } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyAtOUvEgUiRJTEczdnPRGmEVVC7bGSgIo8",
-      authDomain: "animora-2d9f1.firebaseapp.com",
-      projectId: "animora-2d9f1",
-      storageBucket: "animora-2d9f1.firebasestorage.app",
-      messagingSenderId: "145575131863",
-      appId: "1:145575131863:web:0bae8fff0f298b0f8bce92",
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-  </script> -->
 </html>

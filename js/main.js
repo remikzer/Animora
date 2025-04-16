@@ -2,26 +2,26 @@
 // NAVBAR TRANSPARENCE AU SCROLL
 // =====================
 
-const navbar = document.querySelector(".navbar");
-window.addEventListener("scroll", () => {
-  const scrolled = window.scrollY > 50;
-  navbar.style.background = scrolled
-    ? "rgba(255, 255, 255, 0.25)"
-    : "rgba(255, 255, 255, 0.15)";
-  navbar.style.backdropFilter = scrolled ? "blur(25px)" : "blur(20px)";
-});
+// const navbar = document.querySelector(".navbar");
+// window.addEventListener("scroll", () => {
+//   const scrolled = window.scrollY > 50;
+//   navbar.style.background = scrolled
+//     ? "rgba(255, 255, 255, 0.25)"
+//     : "rgba(255, 255, 255, 0.15)";
+//   navbar.style.backdropFilter = scrolled ? "blur(25px)" : "blur(20px)";
+// });
 
 // =====================
 // MENU BURGER
 // =====================
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.querySelector(".nav-links");
+// const menuToggle = document.getElementById("menuToggle");
+// const navLinks = document.querySelector(".nav-links");
 
-menuToggle?.addEventListener("click", () => {
-  menuToggle.classList.toggle("open");
-  navLinks.classList.toggle("open");
-});
+// menuToggle?.addEventListener("click", () => {
+//   menuToggle.classList.toggle("open");
+//   navLinks.classList.toggle("open");
+// });
 
 // =====================
 // OBSERVEUR D'APPARITION DES CARTES
@@ -132,7 +132,7 @@ function displayAnimeDetails(anime) {
 
   detailContainer.innerHTML = `
     <div class="anime-left">
-      <a href="index.html" class="button">← Retour à l'accueil</a>
+      <a href="../index.html" class="button">← Retour à l'accueil</a>
       <img src="${anime.images.jpg.large_image_url}" alt="${anime.title}" />
       <a href="${
         anime.url
@@ -174,8 +174,27 @@ async function setupWatchlistAndRating(animeId) {
   const starRating = document.getElementById("starRating");
   const stars = starRating?.querySelectorAll("span");
 
-  if (!auth.currentUser || !watchlistBtn || !starRating || !stars) return;
+  if (!watchlistBtn || !starRating || !stars) return;
 
+  // === Si utilisateur NON connecté → griser les interactions ===
+  if (!auth.currentUser) {
+    watchlistBtn.textContent = "Connexion requise";
+    watchlistBtn.disabled = true;
+    watchlistBtn.classList.add("already-seen");
+
+    stars.forEach((s) => {
+      s.style.opacity = "0.4";
+      s.style.pointerEvents = "none";
+    });
+
+    if (ratingDisplay) {
+      ratingDisplay.textContent = "Connectez-vous pour noter";
+    }
+
+    return; // stop ici pour les non-connectés
+  }
+
+  // === Si connecté → activer les interactions ===
   const uid = auth.currentUser.uid;
 
   // === WATCHLIST ===
@@ -572,18 +591,11 @@ const recommendedContainer = document.getElementById(
 );
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (document.body.classList.contains("page-profil")) {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        console.log("✅ Utilisateur connecté :", user.email);
-        welcomeMessage.textContent = `Bienvenue, ${user.email}`;
-        await loadFollowedAnimes(user.uid);
-        await loadRecommendedAnimes(user); // 👈 Appelé après que le DOM soit prêt
-      } else {
-        console.warn("🚫 Non connecté, redirection...");
-        window.location.href = "login.html";
-      }
-    });
+  if (body.classList.contains("page-detail")) {
+    const id = new URLSearchParams(window.location.search).get("id");
+    if (!id) return;
+
+    fetchAnimeDetails(id); // 👈 accès libre pour tous
   }
 });
 
@@ -708,15 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = new URLSearchParams(window.location.search).get("id");
     if (!id) return;
 
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("✅ Utilisateur connecté :", user.email);
-        fetchAnimeDetails(id); // 👈 C’est ici que setupWatchlistAndRating sera appelée
-      } else {
-        console.warn("🚫 Non connecté. Redirection vers login...");
-        window.location.href = "login.html";
-      }
-    });
+    fetchAnimeDetails(id); // 🔓 accès libre
   }
 
   if (body.classList.contains("page-search")) {

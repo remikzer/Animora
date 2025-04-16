@@ -36,7 +36,7 @@ body {
 
 main {
   flex: 1;
-  padding-top: 80px;
+  /* padding-top: 80px; */
 }
 
 a {
@@ -80,9 +80,10 @@ img {
   border-right: 3px solid #fff;
   white-space: pre; /* ← empêche les coupures tout en gardant l'espacement */
   overflow: visible;
-  background: linear-gradient(90deg, #ff6ec4, #7873f5);
+  color: #fff;
+  /* background: linear-gradient(90deg, #ff6ec4, #7873f5);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
   animation: blink-caret 0.75s step-end infinite;
   word-break: break-word; /* si mot trop long */
 }
@@ -104,7 +105,7 @@ img {
   }
 
   #typewriterWrapper {
-    margin: 3rem 1.5rem 0;
+    /* margin: 3rem 1.5rem 0; */
     min-height: 3.5rem;
     padding: 0.5rem 1rem;
   }
@@ -264,10 +265,11 @@ img {
 =========================== */
 
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
+  margin-bottom: 1.5rem;
   padding: 5px 5rem;
   display: flex;
   justify-content: space-between;
@@ -284,7 +286,22 @@ img {
 }
 
 .logo {
+  display: inline-block; /* pour que le <a> ait une taille */
   cursor: pointer;
+  height: 4rem; /* taille plus visible */
+  width: 10rem;
+  background: url(./img/animora-logo.png) center center / contain no-repeat;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.logo:hover {
+  display: inline-block; /* pour que le <a> ait une taille */
+  cursor: pointer;
+  height: 4rem; /* taille plus visible */
+  width: 10rem;
+  background: url(./img/animora-logo-hover.png) center center / contain
+    no-repeat;
+  transform: scale(1.1);
 }
 
 .nav-links {
@@ -321,10 +338,15 @@ img {
   color: #e74385;
 }
 
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 5px 1.5rem;
+  }
+}
 /* =========================
    MOBILE NAVIGATION
 =========================== */
-
+/* 
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -379,7 +401,7 @@ img {
   .menu-toggle.open span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
   }
-}
+} */
 
 /* =========================
    FOOTER PREMIUM
@@ -472,10 +494,12 @@ img {
   text-align: center;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.31);
+  max-width: 300px;
 }
 
 .card:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card:active {
@@ -489,10 +513,12 @@ img {
   border-radius: 6px;
   margin-bottom: 0.7rem;
   transition: transform 0.4s ease;
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.02);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
 }
 
 .card h3 {
@@ -535,8 +561,8 @@ img {
 
 .recommendations-section {
   margin: 1rem auto;
-  padding: 2rem 0;
-  max-width: 80%;
+  padding: 0.5rem 0;
+  max-width: 90%;
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -551,34 +577,37 @@ img {
 
 @media (max-width: 1024px) {
   .recommendations-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 768px) {
+  .recommendations-section {
+    max-width: 100%;
+  }
   .recommendations-container {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     gap: 1rem;
-    padding-left: 1rem;
+    padding-left: 0.2rem;
     scroll-padding: 0 1rem;
     -webkit-overflow-scrolling: touch;
-    mask-image: linear-gradient(
+    /* mask-image: linear-gradient(
       to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 5%,
+      rgba(0, 0, 0, 0.9) 95%,
+      rgba(0, 0, 0, 0) 100%
     );
     -webkit-mask-image: linear-gradient(
       to right,
-      transparent 0%,
-      black 10%,
-      black 90%,
-      transparent 100%
-    );
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.9) 5%,
+      rgba(0, 0, 0, 0.9) 95%,
+      rgba(0, 0, 0, 0) 100%
+    ); */
   }
 
   .recommendations-container::-webkit-scrollbar {
@@ -664,7 +693,7 @@ img {
 =========================== */
 
 .search-section {
-  margin: 100px auto 3rem;
+  margin: 2rem auto;
   padding: 4rem 3rem;
   max-width: 1200px;
   background: rgba(255, 255, 255, 0.15);
@@ -867,13 +896,13 @@ img {
 }
 @media (max-width: 1300px) {
   .search-section {
-    margin: 80px 1rem 2rem;
+    margin: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .search-section {
-    margin: 80px 1rem 2rem;
+    margin: 2rem;
     padding: 2rem 1.5rem;
   }
 
@@ -993,7 +1022,7 @@ img {
   .anime-detail-section {
     flex-direction: column;
     height: auto;
-    margin: 100px 50px;
+    margin: 2rem;
     text-align: center;
     padding: 2rem 1rem;
   }
@@ -1003,7 +1032,7 @@ img {
   .anime-detail-section {
     flex-direction: column;
     height: auto;
-    margin: 100px auto;
+    margin: 2rem;
     text-align: center;
     padding: 2rem 1rem;
   }
@@ -1051,12 +1080,18 @@ LOGIN
   cursor: pointer;
   font-weight: bold;
 }
+@media (max-width: 520px) {
+  .auth-form {
+    margin: 80px 1rem;
+    justify-content: center;
+  }
+}
+
 /* =========================
    PROFIL PAGE BASE STYLES
 =========================== */
 
 .page-profil main {
-  margin-top: 100px;
   padding: 2rem;
   max-width: 1200px;
   margin-left: auto;
